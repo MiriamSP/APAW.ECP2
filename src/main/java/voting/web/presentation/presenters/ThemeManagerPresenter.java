@@ -1,6 +1,8 @@
 package voting.web.presentation.presenters;
 
-public class VotingPresenter {
+import voting.web.presentation.models.Model;
+
+public class ThemeManagerPresenter {
 
     private String param1;
 
@@ -16,17 +18,17 @@ public class VotingPresenter {
 
     public String process(Model model) {
         model.put("msg", "Mensaje de Helper1Controller");
-        return "Helper1View";
+        return "VotingView";
     }
 
     public String action1(Model model) {
         model.put("msg", "Mensaje de Helper1Controller:action1:param1: " + param1);
-        return "Helper1View";
+        return "VotingView";
     }
 
     public String action2(Model model) {
         model.put("msg", "Mensaje de Helper1Controller:action2:param2: " + param2);
-        return "Helper1View";
+        return "VotingView";
     }
 
 }

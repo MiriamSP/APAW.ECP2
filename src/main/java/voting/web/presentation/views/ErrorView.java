@@ -1,5 +1,7 @@
 package voting.web.presentation.views;
 
+import voting.web.presentation.models.Model;
+
 public class ErrorView implements View {
 
     @Override

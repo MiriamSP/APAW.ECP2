@@ -3,13 +3,8 @@ package voting.web.presentation.frontController;
 import voting.web.http.HttpRequest;
 import voting.web.http.HttpResponse;
 import voting.web.presentation.models.Model;
-import voting.web.presentation.presenters.ThemeManagerPresenter;
-import voting.web.presentation.presenters.VotingPresenter;
-import voting.web.presentation.views.ErrorView;
-import voting.web.presentation.views.ThemeManagerView;
-import voting.web.presentation.views.VotingView;
 
-public class Dispatcher {
+public class Dispatcher_orig {
 
     public void doGet(HttpRequest request, HttpResponse response) {
         Model model = new Model();
@@ -17,48 +12,46 @@ public class Dispatcher {
         String nextView = request.getPath() + "View";
 
         switch (presenter) {
-        case "VotingPresenter":
-            VotingPresenter votingPresenter = new VotingPresenter();
+        case "Helper1Presenter":
+            Helper1Presenter helper1Presenter = new Helper1Presenter();
             //Injectar parámetros mediante helper1Presenter.setters()
-            nextView = votingPresenter.process(model);
+            nextView = helper1Presenter.process(model);
             break;
-        case "ThemeManagerPresenter":
-            ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
+        case "Helper2Presenter":
+            Helper2Presenter helper2Presenter = new Helper2Presenter();
             //Injectar parámetros mediante helper2Presenter.setters()
-            nextView = themeManagerPresenter.process(model);
+            nextView = helper2Presenter.process(model);
             break;
         }
         this.show(nextView, model);
     }
 
     public void doPost(HttpRequest request, HttpResponse response) {
-        
-        // TODO - Completar con las acciones
         Model model = new Model();
         String presenter = request.getPath() + "Presenter";
         String action = request.getParams().get("action");
         String nextView = request.getPath() + "View";
 
         switch (presenter) {
-        case "VotingPresenter":
-            VotingPresenter votingPresenter = new VotingPresenter();
+        case "Helper1Presenter":
+            Helper1Presenter helper1Presenter = new Helper1Presenter();
             if ("action1".equals(action)) {
-                votingPresenter.setParam1((request.getParams().get("param1")));
+                helper1Presenter.setParam1((request.getParams().get("param1")));
                 //Injectar parámetros mediante helper1Presenter.setters()
-                nextView = votingPresenter.action1(model);
+                nextView = helper1Presenter.action1(model);
             } else if ("action2".equals(action)) {
-                votingPresenter.setParam2((request.getParams().get("param2")));
+                helper1Presenter.setParam2((request.getParams().get("param2")));
                 //Injectar parámetros mediante helper2Presenter.setters()
-                nextView = votingPresenter.action2(model);
+                nextView = helper1Presenter.action2(model);
             } else {
                 model.put("error", "Acción no permitida: " + action);
             }
             break;
-        case "ThemeManagerPresenter":
-            ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
+        case "Helper2Presenter":
+            Helper2Presenter helper2Presenter = new Helper2Presenter();
             if ("action1".equals(action)) {
-                themeManagerPresenter.setParam1(Integer.valueOf(request.getParams().get("param1")));
-                nextView = themeManagerPresenter.action1(model);
+                helper2Presenter.setParam1(Integer.valueOf(request.getParams().get("param1")));
+                nextView = helper2Presenter.action1(model);
             } else {
                 model.put("error", "Acción no permitida: " + action);
             }
@@ -70,12 +63,15 @@ public class Dispatcher {
     private void show(String nextView, Model model) {
         View view;
         switch (nextView) {
-        case "VotingView":
-            view = new VotingView();
+        case "Helper1View":
+            view = new Helper1View();
             break;
-        case "ThemeManagerView":
-            view = new ThemeManagerView();
-            break;        
+        case "Helper2View":
+            view = new Helper2View();
+            break;
+        case "Helper3View":
+            view = new Helper3View();
+            break;
         default:
             view = new ErrorView();
             model.put("error", "Vista no encontrada: " + nextView);

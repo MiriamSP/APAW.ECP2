@@ -1,6 +1,6 @@
 package voting.web.presentation.views;
 
-public class VotingView implements View {
+public class ThemeManagerView implements View {
 
     @Override
     public void show(Model model) {
