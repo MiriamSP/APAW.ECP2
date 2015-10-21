@@ -1,4 +1,13 @@
 package voting.rest.data.memory.daos;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import voting.rest.business.models.entities.Theme;
+import voting.rest.business.models.entities.Vote;
+import voting.rest.data.models.daos.VoteDao;
+
 public class VoteMemoryDao extends GenericMemoryDao<Vote, Integer> implements VoteDao {
 
     public VoteMemoryDao() {

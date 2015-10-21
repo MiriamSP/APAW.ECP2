@@ -1,4 +1,11 @@
 package voting.rest.data.memory.daos;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import voting.rest.data.models.daos.GenericDao;
+
 public abstract class GenericMemoryDao<T, ID> implements GenericDao<T, ID> {
 
     private Map<ID, T> map;

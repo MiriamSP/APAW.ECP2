@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import es.upm.miw.pd.voting.solution.rest.business.models.entities.Theme;
-import es.upm.miw.pd.voting.solution.rest.data.models.daos.ThemeDao;
+import voting.rest.business.models.entities.Theme;
+import voting.rest.data.models.daos.ThemeDao;
 
 public class ThemeMemoryDao extends GenericMemoryDao<Theme, Integer> implements ThemeDao {
 

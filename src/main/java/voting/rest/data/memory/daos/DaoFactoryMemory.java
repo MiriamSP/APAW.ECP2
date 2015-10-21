@@ -1,5 +1,6 @@
 package voting.rest.data.memory.daos;
 
+import voting.rest.data.models.daos.DaoFactory;
 import voting.rest.data.models.daos.ThemeDao;
 import voting.rest.data.models.daos.VoteDao;
 
