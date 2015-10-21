@@ -1,4 +1,4 @@
-package voting;
+package voting.main;
 
 import voting.rest.data.memory.daos.DaoFactoryMemory;
 import voting.rest.data.models.daos.DaoFactory;

@@ -1,5 +1,8 @@
 package voting.rest.data.memory.daos;
 
+import voting.rest.data.models.daos.ThemeDao;
+import voting.rest.data.models.daos.VoteDao;
+
 public class DaoFactoryMemory extends DaoFactory {
 
     private ThemeDao themeDao;
