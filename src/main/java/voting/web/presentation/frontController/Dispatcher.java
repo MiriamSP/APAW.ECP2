@@ -3,10 +3,11 @@ package voting.web.presentation.frontController;
 import voting.web.http.HttpRequest;
 import voting.web.http.HttpResponse;
 import voting.web.presentation.models.Model;
-import voting.web.presentation.presenters.ThemeManagerPresenter;
+import voting.web.presentation.presenters.ThemePresenter;
 import voting.web.presentation.presenters.VotingPresenter;
 import voting.web.presentation.views.ErrorView;
-import voting.web.presentation.views.ThemeManagerView;
+import voting.web.presentation.views.ThemeView;
+import voting.web.presentation.views.View;
 import voting.web.presentation.views.VotingView;
 
 public class Dispatcher {
@@ -23,7 +24,7 @@ public class Dispatcher {
             nextView = votingPresenter.process(model);
             break;
         case "ThemeManagerPresenter":
-            ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
+            ThemePresenter themeManagerPresenter = new ThemePresenter();
             //Injectar parámetros mediante helper2Presenter.setters()
             nextView = themeManagerPresenter.process(model);
             break;
@@ -55,7 +56,7 @@ public class Dispatcher {
             }
             break;
         case "ThemeManagerPresenter":
-            ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
+            ThemePresenter themeManagerPresenter = new ThemePresenter();
             if ("action1".equals(action)) {
                 themeManagerPresenter.setParam1(Integer.valueOf(request.getParams().get("param1")));
                 nextView = themeManagerPresenter.action1(model);
@@ -74,7 +75,7 @@ public class Dispatcher {
             view = new VotingView();
             break;
         case "ThemeManagerView":
-            view = new ThemeManagerView();
+            view = new ThemeView();
             break;        
         default:
             view = new ErrorView();

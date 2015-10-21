@@ -10,4 +10,5 @@ public interface ThemeDao extends GenericDao<Theme,Integer>{
 
     List<String> findAllNames();
 
+    
 }
