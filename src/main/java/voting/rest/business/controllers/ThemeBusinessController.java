@@ -1,39 +1,39 @@
 package voting.rest.business.controllers;
 
-import java.util.List;
-
 import voting.rest.business.models.entities.Theme;
-import voting.rest.business.views.ThemeTransfer;
-import voting.rest.business.views.VoteTransfer;
-import voting.rest.data.memory.daos.ThemeMemoryDao;
 import voting.rest.data.models.daos.DaoFactory;
-import voting.rest.data.models.daos.ThemeDao;
 
 public class ThemeBusinessController {
     // CASOS DE USO THEME
-    //
     // -- ShowVoting
     // - CreateTheme
 
     public boolean CreateTheme(String nameThemeNew) {
-        ThemeTransfer themeTransfer = m1();
+        if (getThemeByName(nameThemeNew) != null) {
+            return false;
+        } else {
+            Theme themeNew = new Theme(getNextId(), nameThemeNew);
+            DaoFactory.getFactory().getThemeDao().create(themeNew);
+            return true;
+        }
+    }
 
-        /*
-         * if (ThemeMemoryDao.findByName(nameThemeNew) != null) { return false; } else { // crear theme int id =
-         * DaoFactory.getFactory().getThemeDao().findAll().size() + 1; Theme themeNew = new Theme(id, nameThemeNew);
-         * DaoFactory.getFactory().getThemeDao().create(themeNew); }
-         */
-        return true;
+    private Theme getThemeByName(String name) {
+        return DaoFactory.getFactory().getThemeDao().findByName(name);
+    }
+
+    private int getNextId() {
+        return DaoFactory.getFactory().getThemeDao().findAll().size() + 1;
+    }
+
+    public void ShowVoting() {
 
     }
 
-    public ThemeTransfer m1() {
-        DaoFactory.getFactory().getThemeDao().findAll();
-        return new ThemeTransfer();
-    }
-
-    public void m2(VoteTransfer voteTransfer) {
-        DaoFactory.getFactory().getVoteDao().read(1);
-    }
-
+    /*
+     * 
+     * public ThemeTransfer m1() { DaoFactory.getFactory().getThemeDao().findAll(); return new ThemeTransfer(); }
+     * 
+     * public void m2(VoteTransfer voteTransfer) { DaoFactory.getFactory().getVoteDao().read(1); }
+     */
 }
