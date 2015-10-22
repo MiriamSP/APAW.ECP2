@@ -10,7 +10,7 @@ public class VoteView implements View {
     @Override
 
     public void show(Model model) {
-        System.out.println("----- Voting ------\n");
+        System.out.println("Voting Page\n");
         Object vote = model.get("msg");
 
         System.out.print("] \n");
