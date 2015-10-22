@@ -85,4 +85,8 @@ public class VoteBusinessController {
     public void m2(ThemeTransfer themeTransfer) {
         DaoFactory.getFactory().getVoteDao().read(1);
     }
+    
+    public List<Vote> getVotes() {
+        return DaoFactory.getFactory().getVoteDao().findAll();
+    }
 }

@@ -13,7 +13,6 @@ import voting.web.presentation.views.VotingView;
 public class Dispatcher {
 
     static final String nameVotePresenter = "VotingPresenter";
-
     static final String nameThemePresenter = "ThemeManagerPresenter";;
 
     public void doGet(HttpRequest request, HttpResponse response) {
@@ -24,8 +23,7 @@ public class Dispatcher {
         switch (presenter) {
         case nameVotePresenter:
             VotingPresenter votingPresenter = new VotingPresenter();
-            // Injectar parámetros mediante helper1Presenter.setters()
-            nextView = votingPresenter.process(model);
+            model.put("voteName", votingPresenter.process());
             break;
         case nameThemePresenter:
             ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
@@ -42,7 +40,6 @@ public class Dispatcher {
         String presenter = request.getPath() + "Presenter";
         String action = request.getParams().get("action");
         String nextView = request.getPath() + "View";
-        // System.out.print("[MSP] --@ DISPATCHER presenter:" + presenter + " Action: " + action + " nextView: " + nextView + "\n");
         String themeName = request.getParams().get("themeName");
         String themeValueVote = request.getParams().get("value");
 
@@ -59,8 +56,7 @@ public class Dispatcher {
                 votingPresenter.setNameTheme(themeName);
                 votingPresenter.setThemeValueVote(themeValueVote);
                 votingPresenter.voteTheme(model);
-
-                nextView = votingPresenter.action1(model);
+                model.put("themeValueVote", votingPresenter.process());
             } else if ("action2".equals(action)) {
                 // comentado
                 // votingPresenter.setParam2((request.getParams().get("param2")));

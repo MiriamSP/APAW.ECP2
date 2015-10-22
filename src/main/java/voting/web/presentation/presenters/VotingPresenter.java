@@ -1,5 +1,7 @@
 package voting.web.presentation.presenters;
 
+import java.util.List;
+
 import voting.rest.business.controllers.ThemeBusinessController;
 import voting.rest.business.controllers.VoteBusinessController;
 import voting.rest.business.models.entities.Theme;
@@ -38,7 +40,10 @@ public class VotingPresenter {
         return Integer.parseInt(this.themeValueVote );
     }
     
-    
+    public List<Vote> process() {
+        List<Vote> votesList = new VoteBusinessController().getVotes();
+        return votesList;
+    }
 
     protected void setParam1(String param1) {
         this.param1 = param1;
