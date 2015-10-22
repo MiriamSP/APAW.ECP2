@@ -8,12 +8,8 @@ import voting.rest.business.views.VoteTransfer;
 import voting.rest.data.models.daos.DaoFactory;
 
 public class ThemeBusinessController {
-    // CASOS DE USO THEME - BusinessController1
-    // -- ShowVoting
-    // - CreateTheme
 
     public boolean CreateTheme(String nameThemeNew) {
-        //System.out.print("[MSP] -- ThemeBusinessController - CreateTheme: \n" );
         if (getThemeByName(nameThemeNew) != null) {
             return false;
         } else {
@@ -31,21 +27,7 @@ public class ThemeBusinessController {
         return DaoFactory.getFactory().getThemeDao().findByName(name);
     }
 
-    public void ShowVoting() {
-
-    }
-    
-    public ThemeTransfer m1() {
-        DaoFactory.getFactory().getThemeDao().findAll();
-        return new ThemeTransfer();
-    }
-
-    public void m2(VoteTransfer voteTransfer) {
-        DaoFactory.getFactory().getVoteDao().read(1);
-    }
-
     public List<String> getThemes() {
-        return  DaoFactory.getFactory().getThemeDao().findAllNames();
-
-    }    
+        return DaoFactory.getFactory().getThemeDao().findAllNames();
+    }
 }
