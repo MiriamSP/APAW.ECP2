@@ -13,8 +13,9 @@ import voting.web.presentation.views.VotingView;
 public class Dispatcher {
 
     static final String nameVotePresenter = "VotingPresenter";
+
     static final String nameThemePresenter = "ThemeManagerPresenter";;
-    
+
     public void doGet(HttpRequest request, HttpResponse response) {
         Model model = new Model();
         String presenter = request.getPath() + "Presenter";
@@ -23,33 +24,27 @@ public class Dispatcher {
         switch (presenter) {
         case nameVotePresenter:
             VotingPresenter votingPresenter = new VotingPresenter();
-            //Injectar parámetros mediante helper1Presenter.setters()
+            // Injectar parámetros mediante helper1Presenter.setters()
             nextView = votingPresenter.process(model);
             break;
         case nameThemePresenter:
             ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
-     
-            System.out.print("[MSP] @ DISPATCher" + themeManagerPresenter.process(model) + "\n");
-            //model.put("themeName", themeManagerPresenter.process(model));
             model.put("themeName", themeManagerPresenter.process());
-
-            //nextView = themeManagerPresenter.process(model);
             break;
         }
         this.show(nextView, model);
     }
 
     public void doPost(HttpRequest request, HttpResponse response) {
-        
+
         // TODO - Completar con las acciones
         Model model = new Model();
         String presenter = request.getPath() + "Presenter";
         String action = request.getParams().get("action");
         String nextView = request.getPath() + "View";
-        //System.out.print("[MSP] --@ DISPATCHER presenter:" + presenter + " Action: " + action + " nextView: " + nextView + "\n");
-        String themeName =  request.getParams().get("themeName");
-        String themeValueVote =  request.getParams().get("value");
-    
+        // System.out.print("[MSP] --@ DISPATCHER presenter:" + presenter + " Action: " + action + " nextView: " + nextView + "\n");
+        String themeName = request.getParams().get("themeName");
+        String themeValueVote = request.getParams().get("value");
 
         switch (presenter) {
         case nameVotePresenter:
@@ -59,17 +54,17 @@ public class Dispatcher {
             if ("voteTheme".equals(action)) {
                 System.out.print("[MSP] @ DISPATCHER --ACTION:" + action + " THEMA: " + themeName + " valor: " + themeValueVote + "\n");
                 // comentado
-                //votingPresenter.setParam1((request.getParams().get("param1")));
-                //Injectar parámetros mediante helper1Presenter.setters()
+                // votingPresenter.setParam1((request.getParams().get("param1")));
+                // Injectar parámetros mediante helper1Presenter.setters()
                 votingPresenter.setNameTheme(themeName);
                 votingPresenter.setThemeValueVote(themeValueVote);
                 votingPresenter.voteTheme(model);
-                
+
                 nextView = votingPresenter.action1(model);
             } else if ("action2".equals(action)) {
                 // comentado
-                //votingPresenter.setParam2((request.getParams().get("param2")));
-                //Injectar parámetros mediante helper2Presenter.setters()
+                // votingPresenter.setParam2((request.getParams().get("param2")));
+                // Injectar parámetros mediante helper2Presenter.setters()
                 nextView = votingPresenter.action2(model);
             } else {
                 model.put("error", "Acción no permitida: " + action);
@@ -78,18 +73,11 @@ public class Dispatcher {
         case nameThemePresenter:
             ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
             model.put("themeName", themeName);
-
-            //System.out.print("[MSP] @ DISPATCHER --ACTION:" + action + "\n");
             if ("createTheme".equals(action)) {
-                // comentado
-                //themeManagerPresenter.setParam1(Integer.valueOf(request.getParams().get("param1")));
-                
-                //System.out.print("[MSP] @ DISPATCHER -- Call Create Theme: " + themeName +" \n");
                 themeManagerPresenter.setNameTheme(themeName);
                 themeManagerPresenter.createTheme(model);
-                //nextView = themePresenter.action1(model);
                 model.put("themeName", themeManagerPresenter.process());
-                
+
             } else {
                 model.put("error", "Acción no permitida: " + action);
             }
@@ -106,7 +94,7 @@ public class Dispatcher {
             break;
         case "ThemeManagerView":
             view = new ThemeManagerView();
-            break;        
+            break;
         default:
             view = new ErrorView();
             model.put("error", "Vista no encontrada: " + nextView);
