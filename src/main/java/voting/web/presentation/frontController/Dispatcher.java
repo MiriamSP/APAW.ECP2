@@ -50,9 +50,6 @@ public class Dispatcher {
             model.put("themeValueVote", themeValueVote);
             if ("voteTheme".equals(action)) {
                 System.out.print("[MSP] @ DISPATCHER --ACTION:" + action + " THEMA: " + themeName + " valor: " + themeValueVote + "\n");
-                // comentado
-                // votingPresenter.setParam1((request.getParams().get("param1")));
-                // Injectar parámetros mediante helper1Presenter.setters()
                 votingPresenter.setNameTheme(themeName);
                 votingPresenter.setThemeValueVote(themeValueVote);
                 votingPresenter.voteTheme(model);

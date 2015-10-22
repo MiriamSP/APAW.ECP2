@@ -32,38 +32,35 @@ public class VoteBusinessController {
         DaoFactory.getFactory().getVoteDao().create(vote);
         return true;
     }
-    
-        
-    private double sumVotes(List<Vote> voteList){
+
+    private double sumVotes(List<Vote> voteList) {
         double sum = 0;
         for (int i = 0; i < voteList.size(); i++) {
             sum += voteList.get(i).getVote();
         }
         return sum;
     }
-    
-    
-    public double[][] getCalcAverage(){
-        double [][] themeAverage = null;
+
+    public double[][] getCalcAverage() {
+        double[][] themeAverage = null;
         double average = 0;
         List<Theme> themeList = DaoFactory.getFactory().getThemeDao().findAll();
         for (int i = 0; i < themeList.size(); i++) {
             List<Vote> voteList = DaoFactory.getFactory().getVoteDao().findByTheme(themeList.get(i));
             int id = themeList.get(i).getId();
-            average = sumVotes(voteList)/voteList.size();
-            themeAverage [id][1] = average;
+            System.out.print("getCalcAverage - id: " + id + "\n");
+            System.out.print("getCalcAverage - size: " + voteList.size() + "\n");
+            if (voteList.size() != 0) {
+                average = sumVotes(voteList) / voteList.size();
             }
-        return themeAverage;
-    }
-    
-    
-    
+        }
+        System.out.print("getCalcAverage - average: " + average + "\n");
 
-    
-    
-    
-    
-    
+        //themeAverage[id][1] = average;
+
+        return themeAverage;
+
+    }
 
     private Theme getThemeByName(String name) {
         return DaoFactory.getFactory().getThemeDao().findByName(name);
@@ -85,7 +82,7 @@ public class VoteBusinessController {
     public void m2(ThemeTransfer themeTransfer) {
         DaoFactory.getFactory().getVoteDao().read(1);
     }
-    
+
     public List<Vote> getVotes() {
         return DaoFactory.getFactory().getVoteDao().findAll();
     }

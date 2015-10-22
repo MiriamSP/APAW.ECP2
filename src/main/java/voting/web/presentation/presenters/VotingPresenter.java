@@ -40,9 +40,15 @@ public class VotingPresenter {
         return Integer.parseInt(this.themeValueVote );
     }
     
-    public List<Vote> process() {
-        List<Vote> votesList = new VoteBusinessController().getVotes();
+    public double[][] process() {
+        //TODO DEFINIFITVO
+        List<Vote> votesList_list = new VoteBusinessController().getVotes();
+        double [][] votesList = new VoteBusinessController().getCalcAverage();
+
         return votesList;
+        
+        
+        
     }
 
     protected void setParam1(String param1) {
