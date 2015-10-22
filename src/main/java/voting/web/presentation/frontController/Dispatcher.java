@@ -28,8 +28,7 @@ public class Dispatcher {
             break;
         case nameThemePresenter:
             ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
-            //Injectar parámetros mediante helper2Presenter.setters()
-            
+     
             System.out.print("[MSP] @ DISPATCher" + themeManagerPresenter.process(model) + "\n");
             //model.put("themeName", themeManagerPresenter.process(model));
             model.put("themeName", themeManagerPresenter.process());
@@ -89,6 +88,7 @@ public class Dispatcher {
                 themeManagerPresenter.setNameTheme(themeName);
                 themeManagerPresenter.createTheme(model);
                 //nextView = themePresenter.action1(model);
+                model.put("themeName", themeManagerPresenter.process());
                 
             } else {
                 model.put("error", "Acción no permitida: " + action);
