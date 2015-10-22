@@ -1,6 +1,9 @@
 package voting.web.presentation.presenters;
 
+import voting.rest.business.controllers.ThemeBusinessController;
 import voting.rest.business.controllers.VoteBusinessController;
+import voting.rest.business.models.entities.Theme;
+import voting.rest.business.models.entities.Vote;
 import voting.rest.business.views.VoteTransfer;
 import voting.web.presentation.models.Model;
 
@@ -45,5 +48,14 @@ public class VotePresenter {
         return "VoteView";
     }
     
-
+    
+ // TODO POST /Voting?themeName=Tema1&action=voteTheme&value=5 HTTP/1.1
+    //voteTheme
+    public void voteTheme(Model model) {
+        Object object = model.get("voteTheme");
+        Vote vote = (Vote) object;        
+        Theme theme = vote.getTheme();
+        String nameTheme = theme.getName();        
+        new VoteBusinessController().VoteTheme(nameTheme);
+    } 
 }
