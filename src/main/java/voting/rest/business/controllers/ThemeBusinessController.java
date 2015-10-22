@@ -11,6 +11,7 @@ public class ThemeBusinessController {
     // - CreateTheme
 
     public boolean CreateTheme(String nameThemeNew) {
+        System.out.print("[MSP] -- ThemeBusinessController - CreateTheme: \n" );
         if (getThemeByName(nameThemeNew) != null) {
             return false;
         } else {

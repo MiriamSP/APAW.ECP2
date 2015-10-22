@@ -38,14 +38,14 @@ public class VotingPresenter {
     
     public String process_orig(Model model) {
         model.put("msg", "VotePresenter:process");
-        return "VoteView";
+        return "VotingView";
     }
     
     public String action1(Model model) {
         model.put("msg", "VotePresenter:action1");
         VoteTransfer voteTransfer = new VoteBusinessController().m1();
         model.put("voteTransfer", voteTransfer);
-        return "VoteView";
+        return "VotingView";
     }
     
     

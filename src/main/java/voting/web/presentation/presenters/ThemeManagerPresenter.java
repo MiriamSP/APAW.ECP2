@@ -36,22 +36,25 @@ public class ThemeManagerPresenter {
         
     public String process(Model model) {
         model.put("msg", "ThemePresenter:process");
-        return "ThemeView";
+        return "ThemeManagerView";
     }
     
     public String action1(Model model) {
-        model.put("msg", "ThemePresenter:action1");
+        model.put("msg", "ThemeManagerPresenter:action1");
         ThemeTransfer themeTransfer = new ThemeBusinessController().m1();
         model.put("themeTransfer", themeTransfer);
-        return "ThemeView";
+        return "ThemeManagerView";
     }
     // TODO POST /ThemeManager?themeName=Tema1&action=createTheme HTTP/1.1
     //createTheme
     public void createTheme(Model model) {
         Object object = model.get("themeName");
         Theme theme = (Theme) object; 
-        System.out.print("[MSP] --CreateTheme: " + theme.getName());
+        if (theme != null){
+        System.out.print("[MSP] -- Presenter - CreateTheme: " + theme.getName() + " \n");
       
         new ThemeBusinessController().CreateTheme(theme.getName());
+        }
+        else  System.out.print("[MSP] --Presenter theme null \n");
     }
 }

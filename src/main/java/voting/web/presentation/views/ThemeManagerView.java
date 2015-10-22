@@ -2,7 +2,6 @@ package voting.web.presentation.views;
 
 import java.util.List;
 
-import voting.rest.business.controllers.ThemeBusinessController;
 import voting.rest.business.models.entities.Theme;
 import voting.web.presentation.models.Model;
 

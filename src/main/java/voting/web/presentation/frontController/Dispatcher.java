@@ -12,21 +12,24 @@ import voting.web.presentation.views.VotingView;
 
 public class Dispatcher {
 
+    static final String nameVotePresenter = "VotingPresenter";
+    static final String nameThemePresenter = "ThemeManagerPresenter";;
+    
     public void doGet(HttpRequest request, HttpResponse response) {
         Model model = new Model();
         String presenter = request.getPath() + "Presenter";
         String nextView = request.getPath() + "View";
 
         switch (presenter) {
-        case "VotePresenter":
-            VotingPresenter votePresenter = new VotingPresenter();
+        case nameVotePresenter:
+            VotingPresenter votingPresenter = new VotingPresenter();
             //Injectar parámetros mediante helper1Presenter.setters()
-            nextView = votePresenter.process(model);
+            nextView = votingPresenter.process(model);
             break;
-        case "ThemePresenter":
-            ThemeManagerPresenter themePresenter = new ThemeManagerPresenter();
+        case nameThemePresenter:
+            ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
             //Injectar parámetros mediante helper2Presenter.setters()
-            nextView = themePresenter.process(model);
+            nextView = themeManagerPresenter.process(model);
             break;
         }
         this.show(nextView, model);
@@ -43,30 +46,30 @@ public class Dispatcher {
         System.out.print("[MSP] --presenter:" + presenter + " Action: " + action + " nextView: " + nextView + "\n");
 
         switch (presenter) {
-        case "VotePresenter":
-            VotingPresenter votePresenter = new VotingPresenter();
+        case nameVotePresenter:
+            VotingPresenter votingPresenter = new VotingPresenter();
             if ("voteTheme".equals(action)) {
                 // comentado
                 //votingPresenter.setParam1((request.getParams().get("param1")));
                 //Injectar parámetros mediante helper1Presenter.setters()
-                nextView = votePresenter.action1(model);
+                nextView = votingPresenter.action1(model);
             } else if ("action2".equals(action)) {
                 // comentado
                 //votingPresenter.setParam2((request.getParams().get("param2")));
                 //Injectar parámetros mediante helper2Presenter.setters()
-                nextView = votePresenter.action2(model);
+                nextView = votingPresenter.action2(model);
             } else {
                 model.put("error", "Acción no permitida: " + action);
             }
             break;
-        case "ThemePresenter":
-            ThemeManagerPresenter themePresenter = new ThemeManagerPresenter();
+        case nameThemePresenter:
+            ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
             System.out.print("[MSP] --ACTION:" + action);
             if ("createTheme".equals(action)) {
                 // comentado
                 //themeManagerPresenter.setParam1(Integer.valueOf(request.getParams().get("param1")));
                 System.out.print("[MSP] --Creando tHEME");
-                themePresenter.createTheme(model);
+                themeManagerPresenter.createTheme(model);
                 //nextView = themePresenter.action1(model);
                 
             } else {
