@@ -3,8 +3,6 @@ package voting.rest.business.controllers;
 import java.util.List;
 
 import voting.rest.business.models.entities.Theme;
-import voting.rest.business.views.ThemeTransfer;
-import voting.rest.business.views.VoteTransfer;
 import voting.rest.data.models.daos.DaoFactory;
 
 public class ThemeBusinessController {
