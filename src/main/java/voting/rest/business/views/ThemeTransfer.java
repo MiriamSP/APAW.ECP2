@@ -1,8 +1,7 @@
 package voting.rest.business.views;
 
 public class ThemeTransfer {
-    private int id;
-
+   
     private String name;
     
     private double average;
@@ -12,18 +11,9 @@ public class ThemeTransfer {
     
     }
 
-    public ThemeTransfer(int id, String name, double average) {
-        this.id = id;
+    public ThemeTransfer( String name, double average) {
         this.name = name;
         this.average = average;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
