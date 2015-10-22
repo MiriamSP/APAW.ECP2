@@ -1,6 +1,5 @@
 package voting.rest.business.views;
 
-import voting.rest.business.models.entities.Theme;
 
 public class VoteTransfer {
 

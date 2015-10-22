@@ -12,7 +12,7 @@ public class VotingView implements View {
     public void show(Model model) {
         System.out.println("Voting Page\n");
         List<String> votesList = (List<String>) model.get("themeValueVote");
-        System.out.print("votesList - size: " + votesList.size());
+        System.out.print("votesList.size: " + votesList.size());
 
         System.out.print("Temas: ");
 

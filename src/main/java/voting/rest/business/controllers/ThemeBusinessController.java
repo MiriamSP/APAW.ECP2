@@ -23,7 +23,7 @@ public class ThemeBusinessController {
         }
     }
 
-    private int getNextId() {
+    public int getNextId() {
         return DaoFactory.getFactory().getThemeDao().findAll().size() + 1;
     }
 

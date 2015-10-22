@@ -26,12 +26,14 @@ public class VoteBusinessController {
 
     public boolean VoteTheme(VoteTransfer voteTransfer) {
         int id = getNextId();
-        Theme theme = voteTransfer.getTheme();
+        String nameThemeVoteTransfer = voteTransfer.getName();
+        Theme theme = getThemeByName(nameThemeVoteTransfer);
         int themeValueVote = voteTransfer.getVote();
         Vote vote = new Vote(id, themeValueVote, theme);
 
         DaoFactory.getFactory().getVoteDao().create(vote);
         return true;
+
     }
 
     private double sumVotes(List<Vote> voteList) {
@@ -43,14 +45,26 @@ public class VoteBusinessController {
     }
 
     public List<ThemeTransfer> getThemeVoteAverages() {
+        // System.out.print("[----------------------getThemeVoteAverages \n");
+
         List<Theme> themeList = DaoFactory.getFactory().getThemeDao().findAll();
+        System.out.print("[--------------themeList.size " + themeList.size() + "\n");
+
+        // List<Vote> voteList = null;// = new List<Vote>;
         List<ThemeTransfer> themeTransferList = new ArrayList<>();
         for (int i = 0; i < themeList.size(); i++) {
-            List<Vote> voteList = DaoFactory.getFactory().getVoteDao().findByTheme(themeList.get(i));
+            // System.out.print("[--------------themeList.get(i) " + themeList.get(i)+"\n");
+            // Vote vote = (Vote) DaoFactory.getFactory().getVoteDao().findByTheme(themeList.get(i));
+            Theme theme = themeList.get(i);
+            System.out.print("[--------------theme " + theme.getName() + " || id:" + theme.getId() + "\n");
+            List<Vote> voteList = DaoFactory.getFactory().getVoteDao().findByTheme(theme);
+            // voteList.add(vote);
+            System.out.print("[--------------voteList.size " + voteList.size() + "\n");
+
             double average = sumVotes(voteList) / voteList.size();
             int id = themeList.get(i).getId();
             String nameTheme = themeList.get(i).getName();
-            ThemeTransfer themeTransfer = new ThemeTransfer(id, nameTheme, average);
+            ThemeTransfer themeTransfer = new ThemeTransfer(nameTheme, average);
             themeTransferList.add(themeTransfer);
         }
         return themeTransferList;

@@ -16,39 +16,40 @@ public class VotingPresenter {
     private String param1;
 
     private String param2;
-    
+
     private String themeName;
+
     private String themeValueVote;
-
-
 
     public void setNameTheme(String themeName) {
         this.themeName = themeName;
     }
-    
+
     public String getNameTheme() {
-        return this.themeName ;
+        return this.themeName;
     }
-    
+
     public void setThemeValueVote(String themeValueVote) {
         this.themeValueVote = themeValueVote;
     }
-    
+
     public String getThemeValueVote() {
-        return this.themeValueVote ;
+        return this.themeValueVote;
     }
-    
+
     public int getThemeValueVoteInt() {
-        return Integer.parseInt(this.themeValueVote );
+        return Integer.parseInt(this.themeValueVote);
     }
-    
-    
-    
+
     public List<String> process() {
+        System.out.print("votingPresenter------- ");
+
         List<ThemeTransfer> themeTransfer = new VoteBusinessController().getThemeVoteAverages();
+        System.out.print("themeTransfersize: " + themeTransfer.size());
+
         List<String> averagesList = new ArrayList<>();
         for (int i = 0; i < averagesList.size(); i++) {
-            averagesList.add("[themeName=" + themeTransfer.get(i).getName()+ ", average=" + themeTransfer.get(i).getAverage() + "]");
+            averagesList.add("[themeName=" + themeTransfer.get(i).getName() + ", average=" + themeTransfer.get(i).getAverage() + "]");
         }
         return averagesList;
 
@@ -76,33 +77,30 @@ public class VotingPresenter {
         model.put("msg", "Mensaje de Helper1Controller:action2:param2: " + param2);
         return "VotingView";
     }
-    
+
     public String process_orig(Model model) {
         model.put("msg", "VotePresenter:process");
         return "VotingView";
     }
-    
+
     public String action1(Model model) {
         model.put("msg", "VotePresenter:action1");
         VoteTransfer voteTransfer = new VoteBusinessController().m1();
         model.put("voteTransfer", voteTransfer);
         return "VotingView";
     }
-    
-    
- // TODO POST /Voting?themeName=Tema1&action=voteTheme&value=5 HTTP/1.1
-    //voteTheme
+
+    // TODO POST /Voting?themeName=Tema1&action=voteTheme&value=5 HTTP/1.1
+    // voteTheme
     public void voteTheme(Model model) {
         String nameTheme = this.getNameTheme();
         int themeValueVoteInt = this.getThemeValueVoteInt();
         System.out.print("[MSP] -- VotingPresenter - THEMA: " + themeName + "\n");
-        //TODO
-        Theme theme = new Theme(1,nameTheme);
-        VoteTransfer voteTransfer = new VoteTransfer(themeValueVoteInt, theme);
+        // TODO
+        // Theme theme = new Theme(Theme.getNextId(),nameTheme);
+        VoteTransfer voteTransfer = new VoteTransfer(nameTheme, themeValueVoteInt);
         new VoteBusinessController().VoteTheme(voteTransfer);
-    } 
-    
-    
-    
-    
+
+    }
+
 }
