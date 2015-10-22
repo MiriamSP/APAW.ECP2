@@ -39,11 +39,13 @@ public class Dispatcher {
         String presenter = request.getPath() + "Presenter";
         String action = request.getParams().get("action");
         String nextView = request.getPath() + "View";
+        
+        System.out.print("[MSP] --presenter:" + presenter + " Action: " + action + " nextView: " + nextView + "\n");
 
         switch (presenter) {
         case "VotePresenter":
             VotePresenter votePresenter = new VotePresenter();
-            if ("createTheme".equals(action)) {
+            if ("voteTheme".equals(action)) {
                 // comentado
                 //votingPresenter.setParam1((request.getParams().get("param1")));
                 //Injectar parámetros mediante helper1Presenter.setters()
@@ -59,9 +61,11 @@ public class Dispatcher {
             break;
         case "ThemePresenter":
             ThemePresenter themeManagerPresenter = new ThemePresenter();
-            if ("action1".equals(action)) {
+            System.out.print("[MSP] --ACTION:" + action);
+            if ("createTheme".equals(action)) {
                 // comentado
                 //themeManagerPresenter.setParam1(Integer.valueOf(request.getParams().get("param1")));
+                System.out.print("[MSP] --Creando tHEME");
                 nextView = themeManagerPresenter.action1(model);
             } else {
                 model.put("error", "Acción no permitida: " + action);
@@ -74,10 +78,10 @@ public class Dispatcher {
     private void show(String nextView, Model model) {
         View view;
         switch (nextView) {
-        case "VotingView":
+        case "VoteView":
             view = new VoteView();
             break;
-        case "ThemeManagerView":
+        case "ThemeManager":
             view = new ThemeView();
             break;        
         default:
