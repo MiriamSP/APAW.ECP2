@@ -1,5 +1,7 @@
 package voting.rest.business.controllers;
 
+import java.util.List;
+
 import voting.rest.business.models.entities.Theme;
 import voting.rest.business.views.ThemeTransfer;
 import voting.rest.business.views.VoteTransfer;
@@ -40,5 +42,10 @@ public class ThemeBusinessController {
 
     public void m2(VoteTransfer voteTransfer) {
         DaoFactory.getFactory().getVoteDao().read(1);
+    }
+
+    public List<String> getThemes() {
+        return  DaoFactory.getFactory().getThemeDao().findAllNames();
+
     }    
 }

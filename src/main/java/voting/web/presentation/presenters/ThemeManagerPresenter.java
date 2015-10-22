@@ -1,5 +1,7 @@
 package voting.web.presentation.presenters;
 
+import java.util.List;
+
 import voting.rest.business.controllers.ThemeBusinessController;
 import voting.rest.business.models.entities.Theme;
 import voting.rest.business.views.ThemeTransfer;
@@ -32,13 +34,13 @@ public class ThemeManagerPresenter {
     }
 
     public String process_orig(Model model) {
-        model.put("msg", "Mensaje de Helper1Controller");
-        return "VotingView";
+        model.put("themeName", "Mensaje de Helper1Controller");
+        return "ThemeManagerView";
     }
 
     public String action1_orig(Model model) {
         model.put("msg", "Mensaje de Helper1Controller:action1:param1: " + param1);
-        return "VotingView";
+        return "ThemeManagerView";
     }
 
     public String action2(Model model) {
@@ -46,8 +48,20 @@ public class ThemeManagerPresenter {
         return "VotingView";
     }
         
+    public ThemeTransfer process2() {
+        ThemeTransfer themeTransfer = new ThemeBusinessController().m1();
+        return themeTransfer;
+    }
+    
+    public List<String> process() {
+        List<String> themesList = new ThemeBusinessController().getThemes();
+        return themesList;
+    }
+
+    
     public String process(Model model) {
-        model.put("msg", "ThemePresenter:process");
+      //  model.put("themeName", "ThemePresenter:process");
+        model.put("themeName", new ThemeBusinessController());
         return "ThemeManagerView";
     }
     

@@ -29,7 +29,12 @@ public class Dispatcher {
         case nameThemePresenter:
             ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
             //Injectar parámetros mediante helper2Presenter.setters()
-            nextView = themeManagerPresenter.process(model);
+            
+            System.out.print("[MSP] @ DISPATCher" + themeManagerPresenter.process(model) + "\n");
+            //model.put("themeName", themeManagerPresenter.process(model));
+            model.put("themeName", themeManagerPresenter.process());
+
+            //nextView = themeManagerPresenter.process(model);
             break;
         }
         this.show(nextView, model);
