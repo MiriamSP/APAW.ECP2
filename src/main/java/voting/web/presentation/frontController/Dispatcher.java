@@ -6,9 +6,9 @@ import voting.web.presentation.models.Model;
 import voting.web.presentation.presenters.ThemePresenter;
 import voting.web.presentation.presenters.VotePresenter;
 import voting.web.presentation.views.ErrorView;
-import voting.web.presentation.views.ThemeView;
+import voting.web.presentation.views.ThemeManagerView;
 import voting.web.presentation.views.View;
-import voting.web.presentation.views.VoteView;
+import voting.web.presentation.views.VotingView;
 
 public class Dispatcher {
 
@@ -78,11 +78,11 @@ public class Dispatcher {
     private void show(String nextView, Model model) {
         View view;
         switch (nextView) {
-        case "VoteView":
-            view = new VoteView();
+        case "VotingView":
+            view = new VotingView();
             break;
-        case "ThemeManager":
-            view = new ThemeView();
+        case "ThemeManagerView":
+            view = new ThemeManagerView();
             break;        
         default:
             view = new ErrorView();

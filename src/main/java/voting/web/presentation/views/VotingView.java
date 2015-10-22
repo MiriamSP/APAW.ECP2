@@ -5,7 +5,7 @@ import java.util.List;
 import voting.rest.business.models.entities.Vote;
 import voting.web.presentation.models.Model;
 
-public class VoteView implements View {
+public class VotingView implements View {
 
     @Override
 

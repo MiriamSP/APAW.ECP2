@@ -6,7 +6,7 @@ import voting.rest.business.controllers.ThemeBusinessController;
 import voting.rest.business.models.entities.Theme;
 import voting.web.presentation.models.Model;
 
-public class ThemeView implements View {
+public class ThemeManagerView implements View {
     @Override
     public void show(Model model) {
         System.out.println("Theme Manager Page\n");
