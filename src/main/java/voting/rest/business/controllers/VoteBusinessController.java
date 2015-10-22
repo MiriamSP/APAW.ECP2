@@ -1,5 +1,6 @@
 package voting.rest.business.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import voting.rest.business.models.entities.Theme;
 import voting.rest.business.models.entities.Vote;
@@ -41,25 +42,18 @@ public class VoteBusinessController {
         return sum;
     }
 
-    public double[][] getCalcAverage() {
-        double[][] themeAverage = null;
-        double average = 0;
+    public List<ThemeTransfer> getThemeVoteAverages() {
         List<Theme> themeList = DaoFactory.getFactory().getThemeDao().findAll();
+        List<ThemeTransfer> themeTransferList = new ArrayList<>();
         for (int i = 0; i < themeList.size(); i++) {
             List<Vote> voteList = DaoFactory.getFactory().getVoteDao().findByTheme(themeList.get(i));
+            double average = sumVotes(voteList) / voteList.size();
             int id = themeList.get(i).getId();
-            System.out.print("getCalcAverage - id: " + id + "\n");
-            System.out.print("getCalcAverage - size: " + voteList.size() + "\n");
-            if (voteList.size() != 0) {
-                average = sumVotes(voteList) / voteList.size();
-            }
+            String nameTheme = themeList.get(i).getName();
+            ThemeTransfer themeTransfer = new ThemeTransfer(id, nameTheme, average);
+            themeTransferList.add(themeTransfer);
         }
-        System.out.print("getCalcAverage - average: " + average + "\n");
-
-        //themeAverage[id][1] = average;
-
-        return themeAverage;
-
+        return themeTransferList;
     }
 
     private Theme getThemeByName(String name) {

@@ -1,11 +1,13 @@
 package voting.web.presentation.presenters;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import voting.rest.business.controllers.ThemeBusinessController;
 import voting.rest.business.controllers.VoteBusinessController;
 import voting.rest.business.models.entities.Theme;
 import voting.rest.business.models.entities.Vote;
+import voting.rest.business.views.ThemeTransfer;
 import voting.rest.business.views.VoteTransfer;
 import voting.web.presentation.models.Model;
 
@@ -40,15 +42,16 @@ public class VotingPresenter {
         return Integer.parseInt(this.themeValueVote );
     }
     
-    public double[][] process() {
-        //TODO DEFINIFITVO
-        List<Vote> votesList_list = new VoteBusinessController().getVotes();
-        double [][] votesList = new VoteBusinessController().getCalcAverage();
+    
+    
+    public List<String> process() {
+        List<ThemeTransfer> themeTransfer = new VoteBusinessController().getThemeVoteAverages();
+        List<String> averagesList = new ArrayList<>();
+        for (int i = 0; i < averagesList.size(); i++) {
+            averagesList.add("[themeName=" + themeTransfer.get(i).getName()+ ", average=" + themeTransfer.get(i).getAverage() + "]");
+        }
+        return averagesList;
 
-        return votesList;
-        
-        
-        
     }
 
     protected void setParam1(String param1) {
