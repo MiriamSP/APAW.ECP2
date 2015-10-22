@@ -1,6 +1,7 @@
 package voting.web.presentation.presenters;
 
 import voting.rest.business.controllers.ThemeBusinessController;
+import voting.rest.business.models.entities.Theme;
 import voting.rest.business.views.ThemeTransfer;
 import voting.web.presentation.models.Model;
 
@@ -45,6 +46,15 @@ public class ThemePresenter {
         model.put("themeTransfer", themeTransfer);
         return "ThemeView";
     }
+    // TODO POST /ThemeManager?themeName=Tema1&action=createTheme HTTP/1.1
+    //createTheme
+    public void createTheme(Model model) {
+        Object object = model.get("themeName");
+        Theme theme = (Theme) object;        
+      
+        new ThemeBusinessController().CreateTheme(theme.getName());
+    }
 
+    
 
 }
