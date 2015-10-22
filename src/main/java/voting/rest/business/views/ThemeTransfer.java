@@ -29,7 +29,5 @@ public class ThemeTransfer {
 
     public void setName(String name) {
         this.name = name;
-    }
-    
-    
+    }    
 }
