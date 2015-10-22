@@ -41,18 +41,18 @@ public class Dispatcher {
         String nextView = request.getPath() + "View";
 
         switch (presenter) {
-        case "VotingPresenter":
-            VotePresenter votingPresenter = new VotePresenter();
-            if ("action1".equals(action)) {
+        case "VotePresenter":
+            VotePresenter votePresenter = new VotePresenter();
+            if ("createTheme".equals(action)) {
                 // comentado
                 //votingPresenter.setParam1((request.getParams().get("param1")));
                 //Injectar parámetros mediante helper1Presenter.setters()
-                nextView = votingPresenter.action1(model);
+                nextView = votePresenter.action1(model);
             } else if ("action2".equals(action)) {
                 // comentado
                 //votingPresenter.setParam2((request.getParams().get("param2")));
                 //Injectar parámetros mediante helper2Presenter.setters()
-                nextView = votingPresenter.action2(model);
+                nextView = votePresenter.action2(model);
             } else {
                 model.put("error", "Acción no permitida: " + action);
             }
