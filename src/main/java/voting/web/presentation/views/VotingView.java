@@ -11,22 +11,18 @@ public class VotingView implements View {
 
     public void show(Model model) {
         System.out.println("Voting Page\n");
-        // String themeName = (String) model.get("themeName");
-        // String themeValueVote = (String) model.get("themeValueVote");
-        List<String> voteList = (List<String>) model.get("themeValueVote");
-        System.out.print("Temas: );
-      System.out.print(voteList.size() +"size: \n");
-      System.out.print("[ThemeTransfer ");
+        List<String> votesList = (List<String>) model.get("themeValueVote");
+        System.out.print("votesList - size: " + votesList.size());
 
-        /*for (Vote vote : voteList) {
-            System.out.println("[ThemeName=" + vote.getTheme().getName() + ",average=" + vote.getVote() + "\n");
-        }*/
+        System.out.print("Temas: ");
 
-        model.get("votes");
+        for (int i = 0; i < votesList.size(); i++) {
+            System.out.print("[ThemeTransfer " + votesList.get(i) + "]");
 
-        System.out.print("Temas: \n");
-
-        // System.out.print("[themeName=" + themeName + ",average="+ themeValueVote +"\n");
+            if (i < votesList.size() - 1) {
+                System.out.print(", ");
+            }
+        }
 
         System.out.print("] \n");
     }

@@ -23,7 +23,7 @@ public class Dispatcher {
         switch (presenter) {
         case nameVotePresenter:
             VotingPresenter votingPresenter = new VotingPresenter();
-            model.put("voteName", votingPresenter.process());
+            model.put("themeValueVote", votingPresenter.process());
             break;
         case nameThemePresenter:
             ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
