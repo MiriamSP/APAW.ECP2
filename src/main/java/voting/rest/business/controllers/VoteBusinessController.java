@@ -12,10 +12,9 @@ public class VoteBusinessController {
     // - VoteTheme
     // - ShowThemeManager
 
-    public boolean VoteTheme(String nameTheme) {
+    public boolean VoteTheme_OLD(String nameTheme) {
         Theme theme = getThemeByName(nameTheme);
         if (theme != null) {
-            // List<Vote> voteList = getVoteByName(theme);
             return false;
         } else {
             Vote voteNew = new Vote(getNextId(), 1, theme);
@@ -24,6 +23,21 @@ public class VoteBusinessController {
         }
     }
 
+    public boolean VoteTheme(VoteTransfer voteTransfer) {
+        int id = getNextId();
+        Theme theme =  voteTransfer.getTheme();
+        int themeValueVote = voteTransfer.getVote(); 
+        if (theme != null) {
+            return false;
+        } else {
+            Vote voteNew = new Vote(id, themeValueVote, theme);
+            DaoFactory.getFactory().getVoteDao().create(voteNew);
+            return true;
+        }
+    }   
+    
+    
+    
     private Theme getThemeByName(String name) {
         return DaoFactory.getFactory().getThemeDao().findByName(name);
     }

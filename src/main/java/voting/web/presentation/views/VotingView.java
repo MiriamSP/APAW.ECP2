@@ -2,7 +2,7 @@ package voting.web.presentation.views;
 
 import java.util.List;
 
-import voting.rest.business.models.entities.Vote;
+
 import voting.web.presentation.models.Model;
 
 public class VotingView implements View {
@@ -11,7 +11,16 @@ public class VotingView implements View {
 
     public void show(Model model) {
         System.out.println("Voting Page\n");
-        Object vote = model.get("msg");
+        String themeName = (String) model.get("themeName");
+        String themeValueVote = (String) model.get("themeValueVote");
+        //List<Vote> voteList = VoteMemoryDao. findByTheme(Theme theme) 
+        
+        model.get("votes");
+
+        System.out.print("Temas: \n");
+        
+        System.out.print("[themeName=" + themeName + ",average="+ themeValueVote +"\n");
+
 
         System.out.print("] \n");
     }

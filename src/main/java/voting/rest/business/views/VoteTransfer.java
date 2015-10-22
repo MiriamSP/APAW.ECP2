@@ -19,6 +19,11 @@ public class VoteTransfer {
         this.vote = vote;
         this.theme = theme;
     }
+    
+    public VoteTransfer(int vote, Theme theme) {
+        this.vote = vote;
+        this.theme = theme;
+    }
 
     public int getId() {
         return id;

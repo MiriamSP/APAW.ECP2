@@ -14,6 +14,8 @@ public class VotingPresenter {
     private String param2;
     
     private String themeName;
+    private String themeValueVote;
+
 
 
     public void setNameTheme(String themeName) {
@@ -23,6 +25,20 @@ public class VotingPresenter {
     public String getNameTheme() {
         return this.themeName ;
     }
+    
+    public void setThemeValueVote(String themeValueVote) {
+        this.themeValueVote = themeValueVote;
+    }
+    
+    public String getThemeValueVote() {
+        return this.themeValueVote ;
+    }
+    
+    public int getThemeValueVoteInt() {
+        return Integer.parseInt(this.themeValueVote );
+    }
+    
+    
 
     protected void setParam1(String param1) {
         this.param1 = param1;
@@ -63,9 +79,13 @@ public class VotingPresenter {
  // TODO POST /Voting?themeName=Tema1&action=voteTheme&value=5 HTTP/1.1
     //voteTheme
     public void voteTheme(Model model) {
-        String nameTheme = this.getNameTheme()     ;
+        String nameTheme = this.getNameTheme();
+        int themeValueVoteInt = this.getThemeValueVoteInt();
         System.out.print("[MSP] -- VotingPresenter - THEMA: " + themeName + "\n");
-        new VoteBusinessController().VoteTheme(nameTheme);
+        //TODO
+        Theme theme = new Theme(1,nameTheme);
+        VoteTransfer voteTransfer = new VoteTransfer(themeValueVoteInt, theme);
+        new VoteBusinessController().VoteTheme(voteTransfer);
     } 
     
     

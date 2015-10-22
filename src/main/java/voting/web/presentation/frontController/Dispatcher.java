@@ -44,17 +44,21 @@ public class Dispatcher {
         String nextView = request.getPath() + "View";
         //System.out.print("[MSP] --@ DISPATCHER presenter:" + presenter + " Action: " + action + " nextView: " + nextView + "\n");
         String themeName =  request.getParams().get("themeName");
+        String themeValueVote =  request.getParams().get("value");
+    
 
         switch (presenter) {
         case nameVotePresenter:
             VotingPresenter votingPresenter = new VotingPresenter();
             model.put("themeName", themeName);
+            model.put("themeValueVote", themeValueVote);
             if ("voteTheme".equals(action)) {
-                System.out.print("[MSP] @ DISPATCHER --ACTION:" + action + " THEMA: " + themeName + "\n");
+                System.out.print("[MSP] @ DISPATCHER --ACTION:" + action + " THEMA: " + themeName + " valor: " + themeValueVote + "\n");
                 // comentado
                 //votingPresenter.setParam1((request.getParams().get("param1")));
                 //Injectar parámetros mediante helper1Presenter.setters()
                 votingPresenter.setNameTheme(themeName);
+                votingPresenter.setThemeValueVote(themeValueVote);
                 votingPresenter.voteTheme(model);
                 
                 nextView = votingPresenter.action1(model);
