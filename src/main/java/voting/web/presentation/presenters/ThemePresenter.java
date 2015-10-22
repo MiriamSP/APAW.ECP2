@@ -33,8 +33,7 @@ public class ThemePresenter {
         model.put("msg", "Mensaje de Helper1Controller:action2:param2: " + param2);
         return "VotingView";
     }
-    
-    
+        
     public String process(Model model) {
         model.put("msg", "ThemePresenter:process");
         return "ThemeView";
@@ -54,7 +53,4 @@ public class ThemePresenter {
       
         new ThemeBusinessController().CreateTheme(theme.getName());
     }
-
-    
-
 }
