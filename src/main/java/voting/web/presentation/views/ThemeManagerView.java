@@ -13,8 +13,9 @@ public class ThemeManagerView implements View {
 
         Object object = model.get("themeName");
         Theme theme = (Theme) object;
+        System.out.print("Temas: [ ");
         if (theme != null) {
-            System.out.print("Temas: [ ");
+            
             // TODO
 
             System.out.print(theme.getName() + " ");

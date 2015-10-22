@@ -3,8 +3,8 @@ package voting.web.presentation.frontController;
 import voting.web.http.HttpRequest;
 import voting.web.http.HttpResponse;
 import voting.web.presentation.models.Model;
-import voting.web.presentation.presenters.ThemePresenter;
-import voting.web.presentation.presenters.VotePresenter;
+import voting.web.presentation.presenters.ThemeManagerPresenter;
+import voting.web.presentation.presenters.VotingPresenter;
 import voting.web.presentation.views.ErrorView;
 import voting.web.presentation.views.ThemeManagerView;
 import voting.web.presentation.views.View;
@@ -19,12 +19,12 @@ public class Dispatcher {
 
         switch (presenter) {
         case "VotePresenter":
-            VotePresenter votePresenter = new VotePresenter();
+            VotingPresenter votePresenter = new VotingPresenter();
             //Injectar parámetros mediante helper1Presenter.setters()
             nextView = votePresenter.process(model);
             break;
         case "ThemePresenter":
-            ThemePresenter themePresenter = new ThemePresenter();
+            ThemeManagerPresenter themePresenter = new ThemeManagerPresenter();
             //Injectar parámetros mediante helper2Presenter.setters()
             nextView = themePresenter.process(model);
             break;
@@ -44,7 +44,7 @@ public class Dispatcher {
 
         switch (presenter) {
         case "VotePresenter":
-            VotePresenter votePresenter = new VotePresenter();
+            VotingPresenter votePresenter = new VotingPresenter();
             if ("voteTheme".equals(action)) {
                 // comentado
                 //votingPresenter.setParam1((request.getParams().get("param1")));
@@ -60,13 +60,15 @@ public class Dispatcher {
             }
             break;
         case "ThemePresenter":
-            ThemePresenter themeManagerPresenter = new ThemePresenter();
+            ThemeManagerPresenter themePresenter = new ThemeManagerPresenter();
             System.out.print("[MSP] --ACTION:" + action);
             if ("createTheme".equals(action)) {
                 // comentado
                 //themeManagerPresenter.setParam1(Integer.valueOf(request.getParams().get("param1")));
                 System.out.print("[MSP] --Creando tHEME");
-                nextView = themeManagerPresenter.action1(model);
+                themePresenter.createTheme(model);
+                //nextView = themePresenter.action1(model);
+                
             } else {
                 model.put("error", "Acción no permitida: " + action);
             }

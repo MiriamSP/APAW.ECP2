@@ -7,7 +7,7 @@ import voting.rest.business.models.entities.Vote;
 import voting.rest.business.views.VoteTransfer;
 import voting.web.presentation.models.Model;
 
-public class VotePresenter {
+public class VotingPresenter {
 
     private String param1;
 

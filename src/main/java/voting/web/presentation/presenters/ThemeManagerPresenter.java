@@ -5,7 +5,7 @@ import voting.rest.business.models.entities.Theme;
 import voting.rest.business.views.ThemeTransfer;
 import voting.web.presentation.models.Model;
 
-public class ThemePresenter {
+public class ThemeManagerPresenter {
 
     private String param1;
 
@@ -49,7 +49,8 @@ public class ThemePresenter {
     //createTheme
     public void createTheme(Model model) {
         Object object = model.get("themeName");
-        Theme theme = (Theme) object;        
+        Theme theme = (Theme) object; 
+        System.out.print("[MSP] --CreateTheme: " + theme.getName());
       
         new ThemeBusinessController().CreateTheme(theme.getName());
     }
