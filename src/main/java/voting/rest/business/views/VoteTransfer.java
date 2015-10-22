@@ -3,34 +3,19 @@ package voting.rest.business.views;
 import voting.rest.business.models.entities.Theme;
 
 public class VoteTransfer {
-    private int id;
 
     private int vote;
 
-    private Theme theme;
+    private String name;
 
     public VoteTransfer() {
 
     }
 
-    public VoteTransfer(int id, int vote, Theme theme) {
+    public VoteTransfer(String name, int  vote) {
         super();
-        this.id = id;
+        this.name = name;
         this.vote = vote;
-        this.theme = theme;
-    }
-    
-    public VoteTransfer(int vote, Theme theme) {
-        this.vote = vote;
-        this.theme = theme;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getVote() {
@@ -41,12 +26,13 @@ public class VoteTransfer {
         this.vote = vote;
     }
 
-    public Theme getTheme() {
-        return theme;
+    public String getName() {
+        return name;
     }
 
-    public void setTheme(Theme theme) {
-        this.theme = theme;
+    public void setName(String name) {
+        this.name = name;
     }
-
+    
+    
 }
