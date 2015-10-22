@@ -41,17 +41,16 @@ public class Dispatcher {
         String action = request.getParams().get("action");
         String nextView = request.getPath() + "View";
         String themeName = request.getParams().get("themeName");
-        String themeValueVote = request.getParams().get("value");
+        String valueVote = request.getParams().get("value");
 
         switch (presenter) {
         case nameVotePresenter:
             VotingPresenter votingPresenter = new VotingPresenter();
             model.put("themeName", themeName);
-            model.put("themeValueVote", themeValueVote);
+            model.put("valueVote", valueVote);
             if ("voteTheme".equals(action)) {
-                System.out.print("[MSP] @ DISPATCHER --ACTION:" + action + " THEMA: " + themeName + " valor: " + themeValueVote + "\n");
                 votingPresenter.setNameTheme(themeName);
-                votingPresenter.setThemeValueVote(themeValueVote);
+                votingPresenter.setThemeValueVote(valueVote);
                 votingPresenter.voteTheme(model);
                 model.put("themeValueVote", votingPresenter.process());
             } else if ("action2".equals(action)) {
