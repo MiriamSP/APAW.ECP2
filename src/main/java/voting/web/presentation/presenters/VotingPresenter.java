@@ -42,14 +42,18 @@ public class VotingPresenter {
     }
 
     public List<String> process() {
-        System.out.print("votingPresenter------- ");
+        System.out.print("votingPresenter-------\n ");
 
         List<ThemeTransfer> themeTransfer = new VoteBusinessController().getThemeVoteAverages();
-        System.out.print("themeTransfersize: " + themeTransfer.size());
+        System.out.print("themeTransfersize: " + themeTransfer.size() + "\n");
 
         List<String> averagesList = new ArrayList<>();
-        for (int i = 0; i < averagesList.size(); i++) {
+        System.out.print("averagesList.size(): " + averagesList.size() + "\n");
+
+        for (int i = 0; i < themeTransfer.size(); i++) {
             averagesList.add("[themeName=" + themeTransfer.get(i).getName() + ", average=" + themeTransfer.get(i).getAverage() + "]");
+            System.out.print("[themeName=" + themeTransfer.get(i).getName() + ", average=" + themeTransfer.get(i).getAverage() + "]\n");
+
         }
         return averagesList;
 
@@ -95,7 +99,7 @@ public class VotingPresenter {
     public void voteTheme(Model model) {
         String nameTheme = this.getNameTheme();
         int themeValueVoteInt = this.getThemeValueVoteInt();
-        System.out.print("[MSP] -- VotingPresenter - THEMA: " + themeName + "\n");
+        //System.out.print("[MSP] -- VotingPresenter - THEMA: " + themeName + "\n");
         // TODO
         // Theme theme = new Theme(Theme.getNextId(),nameTheme);
         VoteTransfer voteTransfer = new VoteTransfer(nameTheme, themeValueVoteInt);
