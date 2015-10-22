@@ -12,6 +12,17 @@ public class VotingPresenter {
     private String param1;
 
     private String param2;
+    
+    private String themeName;
+
+
+    public void setNameTheme(String themeName) {
+        this.themeName = themeName;
+    }
+    
+    public String getNameTheme() {
+        return this.themeName ;
+    }
 
     protected void setParam1(String param1) {
         this.param1 = param1;
@@ -52,10 +63,12 @@ public class VotingPresenter {
  // TODO POST /Voting?themeName=Tema1&action=voteTheme&value=5 HTTP/1.1
     //voteTheme
     public void voteTheme(Model model) {
-        Object object = model.get("voteTheme");
-        Vote vote = (Vote) object;        
-        Theme theme = vote.getTheme();
-        String nameTheme = theme.getName();        
+        String nameTheme = this.getNameTheme()     ;
+        System.out.print("[MSP] -- VotingPresenter - THEMA: " + themeName + "\n");
         new VoteBusinessController().VoteTheme(nameTheme);
     } 
+    
+    
+    
+    
 }

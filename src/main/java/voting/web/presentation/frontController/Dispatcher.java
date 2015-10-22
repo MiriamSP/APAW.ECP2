@@ -42,15 +42,21 @@ public class Dispatcher {
         String presenter = request.getPath() + "Presenter";
         String action = request.getParams().get("action");
         String nextView = request.getPath() + "View";
-        System.out.print("[MSP] --@ DISPATCHER presenter:" + presenter + " Action: " + action + " nextView: " + nextView + "\n");
+        //System.out.print("[MSP] --@ DISPATCHER presenter:" + presenter + " Action: " + action + " nextView: " + nextView + "\n");
+        String themeName =  request.getParams().get("themeName");
 
         switch (presenter) {
         case nameVotePresenter:
             VotingPresenter votingPresenter = new VotingPresenter();
+            model.put("themeName", themeName);
             if ("voteTheme".equals(action)) {
+                System.out.print("[MSP] @ DISPATCHER --ACTION:" + action + " THEMA: " + themeName + "\n");
                 // comentado
                 //votingPresenter.setParam1((request.getParams().get("param1")));
                 //Injectar parámetros mediante helper1Presenter.setters()
+                votingPresenter.setNameTheme(themeName);
+                votingPresenter.voteTheme(model);
+                
                 nextView = votingPresenter.action1(model);
             } else if ("action2".equals(action)) {
                 // comentado
@@ -63,15 +69,14 @@ public class Dispatcher {
             break;
         case nameThemePresenter:
             ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
-            String themeName =  request.getParams().get("themeName");
             model.put("themeName", themeName);
 
-            System.out.print("[MSP] @ DISPATCHER --ACTION:" + action + "\n");
+            //System.out.print("[MSP] @ DISPATCHER --ACTION:" + action + "\n");
             if ("createTheme".equals(action)) {
                 // comentado
                 //themeManagerPresenter.setParam1(Integer.valueOf(request.getParams().get("param1")));
                 
-                System.out.print("[MSP] @ DISPATCHER -- Call Create Theme: " + themeName +" \n");
+                //System.out.print("[MSP] @ DISPATCHER -- Call Create Theme: " + themeName +" \n");
                 themeManagerPresenter.setNameTheme(themeName);
                 themeManagerPresenter.createTheme(model);
                 //nextView = themePresenter.action1(model);

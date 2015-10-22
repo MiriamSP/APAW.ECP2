@@ -63,7 +63,7 @@ public class ThemeManagerPresenter {
     
         //Object object = model.get("themeName");
         //Theme theme = (Theme) object; 
-        System.out.print("[MSP] -- Presenter - CreateTheme: " + this.getNameTheme() + " \n");
+        //System.out.print("[MSP] -- Presenter - CreateTheme: " + this.getNameTheme() + " \n");
       
         new ThemeBusinessController().CreateTheme(this.getNameTheme());
        
