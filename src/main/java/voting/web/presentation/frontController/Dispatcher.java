@@ -13,6 +13,7 @@ import voting.web.presentation.views.VotingView;
 public class Dispatcher {
 
     static final String nameVotePresenter = "VotingPresenter";
+
     static final String nameThemePresenter = "ThemeManagerPresenter";;
 
     public void doGet(HttpRequest request, HttpResponse response) {
@@ -34,8 +35,6 @@ public class Dispatcher {
     }
 
     public void doPost(HttpRequest request, HttpResponse response) {
-
-        // TODO - Completar con las acciones
         Model model = new Model();
         String presenter = request.getPath() + "Presenter";
         String action = request.getParams().get("action");
@@ -53,11 +52,6 @@ public class Dispatcher {
                 votingPresenter.setThemeValueVote(valueVote);
                 votingPresenter.voteTheme(model);
                 model.put("themeValueVote", votingPresenter.process());
-            } else if ("action2".equals(action)) {
-                // comentado
-                // votingPresenter.setParam2((request.getParams().get("param2")));
-                // Injectar parámetros mediante helper2Presenter.setters()
-                nextView = votingPresenter.action2(model);
             } else {
                 model.put("error", "Acción no permitida: " + action);
             }
