@@ -10,10 +10,22 @@ public class ThemeManagerPresenter {
     private String param1;
 
     private String param2;
+    
+    private String themeName;
 
+
+    public void setNameTheme(String themeName) {
+        this.themeName = themeName;
+    }
+    
+    public String getNameTheme() {
+        return this.themeName ;
+    }
+    
     protected void setParam1(String param1) {
         this.param1 = param1;
     }
+    
 
     protected void setParam2(String param2) {
         this.param2 = param2;
@@ -48,13 +60,12 @@ public class ThemeManagerPresenter {
     // TODO POST /ThemeManager?themeName=Tema1&action=createTheme HTTP/1.1
     //createTheme
     public void createTheme(Model model) {
-        Object object = model.get("themeName");
-        Theme theme = (Theme) object; 
-        if (theme != null){
-        System.out.print("[MSP] -- Presenter - CreateTheme: " + theme.getName() + " \n");
+    
+        //Object object = model.get("themeName");
+        //Theme theme = (Theme) object; 
+        System.out.print("[MSP] -- Presenter - CreateTheme: " + this.getNameTheme() + " \n");
       
-        new ThemeBusinessController().CreateTheme(theme.getName());
-        }
-        else  System.out.print("[MSP] --Presenter theme null \n");
+        new ThemeBusinessController().CreateTheme(this.getNameTheme());
+       
     }
 }

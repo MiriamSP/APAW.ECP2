@@ -9,23 +9,18 @@ public class ThemeManagerView implements View {
     @Override
     public void show(Model model) {
         System.out.println("Theme Manager Page\n");
-
-        Object object = model.get("themeName");
-        Theme theme = (Theme) object;
+        String themeName = (String) model.get("themeName");
+       /* Object object = model.get("themeName");
+        Theme theme = (Theme) object;*/
         System.out.print("Temas: [ ");
-        if (theme != null) {
             
             // TODO
 
-            System.out.print(theme.getName() + " ");
+            System.out.print(themeName + " ");
             // for (String themeName : themesList) {
             // System.out.print(themeName + " ");
             // }
-        } else {
-            System.out.print("Theme null");
-
-        }
-
+        
         System.out.print("] \n");
 
     }

@@ -42,8 +42,7 @@ public class Dispatcher {
         String presenter = request.getPath() + "Presenter";
         String action = request.getParams().get("action");
         String nextView = request.getPath() + "View";
-        
-        System.out.print("[MSP] --presenter:" + presenter + " Action: " + action + " nextView: " + nextView + "\n");
+        System.out.print("[MSP] --@ DISPATCHER presenter:" + presenter + " Action: " + action + " nextView: " + nextView + "\n");
 
         switch (presenter) {
         case nameVotePresenter:
@@ -64,11 +63,16 @@ public class Dispatcher {
             break;
         case nameThemePresenter:
             ThemeManagerPresenter themeManagerPresenter = new ThemeManagerPresenter();
-            System.out.print("[MSP] --ACTION:" + action);
+            String themeName =  request.getParams().get("themeName");
+            model.put("themeName", themeName);
+
+            System.out.print("[MSP] @ DISPATCHER --ACTION:" + action + "\n");
             if ("createTheme".equals(action)) {
                 // comentado
                 //themeManagerPresenter.setParam1(Integer.valueOf(request.getParams().get("param1")));
-                System.out.print("[MSP] --Creando tHEME");
+                
+                System.out.print("[MSP] @ DISPATCHER -- Call Create Theme: " + themeName +" \n");
+                themeManagerPresenter.setNameTheme(themeName);
                 themeManagerPresenter.createTheme(model);
                 //nextView = themePresenter.action1(model);
                 
