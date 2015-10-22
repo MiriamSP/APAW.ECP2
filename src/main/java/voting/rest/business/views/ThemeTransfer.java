@@ -4,15 +4,18 @@ public class ThemeTransfer {
     private int id;
 
     private String name;
+    
+    private double average;
 
     
     public ThemeTransfer() {
     
     }
 
-    public ThemeTransfer(int id, String name) {
+    public ThemeTransfer(int id, String name, double average) {
         this.id = id;
         this.name = name;
+        this.average = average;
     }
 
     public int getId() {
@@ -29,5 +32,14 @@ public class ThemeTransfer {
 
     public void setName(String name) {
         this.name = name;
+    }    
+    
+    
+    public double getAverage() {
+        return average;
+    }
+
+    public void setAverage(double average) {
+        this.average = average;
     }    
 }
