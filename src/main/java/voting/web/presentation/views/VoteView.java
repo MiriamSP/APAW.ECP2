@@ -2,7 +2,7 @@ package voting.web.presentation.views;
 
 import voting.web.presentation.models.Model;
 
-public class VotingView implements View {
+public class VoteView implements View {
 
     @Override
     public void show(Model model) {

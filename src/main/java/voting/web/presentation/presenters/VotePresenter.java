@@ -1,8 +1,10 @@
 package voting.web.presentation.presenters;
 
+import voting.rest.business.controllers.VoteBusinessController;
+import voting.rest.business.views.VoteTransfer;
 import voting.web.presentation.models.Model;
 
-public class VotingPresenter {
+public class VotePresenter {
 
     private String param1;
 
@@ -21,7 +23,7 @@ public class VotingPresenter {
         return "VotingView";
     }
 
-    public String action1(Model model) {
+    public String action1_orig(Model model) {
         model.put("msg", "Mensaje de Helper1Controller:action1:param1: " + param1);
         return "VotingView";
     }
@@ -30,5 +32,18 @@ public class VotingPresenter {
         model.put("msg", "Mensaje de Helper1Controller:action2:param2: " + param2);
         return "VotingView";
     }
+    
+    public String process_orig(Model model) {
+        model.put("msg", "VotePresenter:process");
+        return "VoteView";
+    }
+    
+    public String action1(Model model) {
+        model.put("msg", "VotePresenter:action1");
+        VoteTransfer voteTransfer = new VoteBusinessController().m1();
+        model.put("voteTransfer", voteTransfer);
+        return "VoteView";
+    }
+    
 
 }

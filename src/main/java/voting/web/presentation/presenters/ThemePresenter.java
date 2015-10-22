@@ -1,5 +1,7 @@
 package voting.web.presentation.presenters;
 
+import voting.rest.business.controllers.ThemeBusinessController;
+import voting.rest.business.views.ThemeTransfer;
 import voting.web.presentation.models.Model;
 
 public class ThemePresenter {
@@ -16,12 +18,12 @@ public class ThemePresenter {
         this.param2 = param2;
     }
 
-    public String process(Model model) {
+    public String process_orig(Model model) {
         model.put("msg", "Mensaje de Helper1Controller");
         return "VotingView";
     }
 
-    public String action1(Model model) {
+    public String action1_orig(Model model) {
         model.put("msg", "Mensaje de Helper1Controller:action1:param1: " + param1);
         return "VotingView";
     }
@@ -30,5 +32,19 @@ public class ThemePresenter {
         model.put("msg", "Mensaje de Helper1Controller:action2:param2: " + param2);
         return "VotingView";
     }
+    
+    
+    public String process(Model model) {
+        model.put("msg", "ThemePresenter:process");
+        return "ThemeView";
+    }
+    
+    public String action1(Model model) {
+        model.put("msg", "ThemePresenter:action1");
+        ThemeTransfer themeTransfer = new ThemeBusinessController().m1();
+        model.put("themeTransfer", themeTransfer);
+        return "ThemeView";
+    }
+
 
 }
